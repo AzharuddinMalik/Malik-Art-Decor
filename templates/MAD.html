@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAD Associates – P.O.P & Gypsum Specialists 2025</title>
+    <!-- Bootstrap CSS for basic grid and utilities (can be replaced with pure CSS if desired) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter for body, Playfair Display for headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/style/style.css">
+</head>
+<body>
+    <!-------------------------------------------- Header & Navigation ------------------------------------------>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <!-- Centered Brand Logo -->
+            <a class="navbar-brand" href="#home" aria-label="Malik Art Decor Home">
+                <div class="brand-content">
+                    <div class="brand-icon">
+                        <i class="fas fa-home text-white" aria-hidden="true"></i>
+                    </div>
+                    <div class="brand-text">
+                        <h4>Malik Art Decor</h4>
+                        <small>P.O.P & Gypsum Works</small>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Right Controls -->
+            <div class="navbar-controls">
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" aria-label="Toggle dark mode" onclick="toggleTheme()">
+                    <svg id="themeIcon" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                        <!-- Sun icon for light mode, Moon icon for dark mode -->
+                        <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 011.06-1.06l1.591 1.591a.75.75 0 11-1.06 1.06l-1.591-1.591zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75z"/>
+                    </svg>
+                </button>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- Collapsible Navigation Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--------------------------------------------- Main Content Area ----------------------------------------->
+    <main>
+        <!--------------------------------------------- Hero Section ----------------------------------------->
+        <section id="home" class="hero-section">
+            <div class="hero-bg" aria-hidden="true"></div>
+
+            <!-- Hero Card -->
+            <article class="hero-card glass fade">
+                <h1>Transform Spaces with <span id="typed">Expert P.O.P</span></h1>
+                <p class="lead">
+                    Jaipur's trusted P.O.P & Gypsum specialists with 500+ projects delivered.
+                    We create stunning interiors that elevate your space and reflect your vision.
+                </p>
+                <a href="#cost-calculator" class="btn-hero" role="button">Get Instant Quote</a>
+            </article>
+
+            <!-- Quick Enquiry Form -->
+            <aside class="contact-card glass fade">
+                <h3>Quick Enquiry</h3>
+                <form id="homeContactForm" aria-labelledby="quick-enquiry-heading">
+                    <label for="homeName" class="visually-hidden">Your Name</label>
+                    <input type="text" id="homeName" name="name" placeholder="Your Name" required aria-label="Your Name">
+                    <label for="homeEmail" class="visually-hidden">Email Address</label>
+                    <input type="email" id="homeEmail" name="email" placeholder="Email Address" required aria-label="Email Address">
+                    <label for="homePhone" class="visually-hidden">Phone Number</label>
+                    <input type="tel" id="homePhone" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
+                    <label for="homeService" class="visually-hidden">Select Service</label>
+                    <select id="homeService" name="service" required aria-label="Select Service">
+                        <option value="">Select Service</option>
+                        <option value="P.O.P Works">P.O.P Works</option>
+                        <option value="Gypsum Works">Gypsum Works</option>
+                        <option value="Turn-Key Construction">Turn-Key Construction</option>
+                        <option value="Interior Design">Interior Design</option>
+                        <option value="Renovation">Renovation</option>
+                    </select>
+                    <label for="homeMessage" class="visually-hidden">Project Details</label>
+                    <textarea id="homeMessage" name="message" placeholder="Project Details" rows="4" required aria-label="Project Details"></textarea>
+                    <button type="submit" class="btn-hero">Send Message</button>
+                </form>
+            </aside>
+        </section>
+
+        <!------------------------------------------------ Hero Section ------------------------------------------>
+        <section id="home1" class="hero-section1">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="display-3 fw-bold mb-4">Transform Your Space with Expert Craftsmanship</h1>
+                    <p class="lead mb-4">Malik Art Decor specializes in premium P.O.P. (Plaster of Paris) and Gypsum works, bringing elegance and sophistication to residential and commercial spaces.</p>
+                    <div class="hero-btns">
+                        <button class="btn-hero" onclick="scrollToSection('services')">
+                            <i class="fas fa-tools me-2"></i>Our Services
+                        </button>
+                        <button class="btn-hero-outline" onclick="scrollToSection('portfolio')">
+                            <i class="fas fa-images me-2"></i>View Portfolio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!----------------------------------------- New: Cost Calculator Section ------------------------>
+        <section id="cost-calculator" class="section-bg calculator-bg">
+        <div class="container py-5">
+            <h2 class="section-title">Estimate Your Project Cost</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-card animate-fade-in">
+                        <h3>Quick Estimate</h3>
+                        <form id="calculatorForm">
+                            <div class="form-group mb-3">
+                                <label for="calcService" class="form-label">Select Service Type:</label>
+                                <select id="calcService" class="form-control" required>
+                                    <option value="">Choose a service</option>
+                                    <option value="Gypsum Board False Ceiling with Gyp Cera Frame">Gypsum Board False Ceiling (Gyp Cera)</option>
+                                    <option value="Gypsum Board False Ceiling with Expert Frame">Gypsum Board False Ceiling (Expert)</option>
+                                    <option value="Gypsum Board False Ceiling with GI Ultra Frame">Gypsum Board False Ceiling (GI Ultra)</option>
+                                    <option value="Chicken Wire Mesh False Ceiling">Chicken Wire Mesh False Ceiling</option>
+                                    <option value="P.O.P Panning on Wall (Right Angle)">P.O.P Panning on Wall (Right Angle)</option>
+                                    <option value="P.O.P Panning on Wall (Line & Level)">P.O.P Panning on Wall (Line & Level)</option>
+                                    <option value="Ceiling Cornices up to 4 inches">Ceiling Cornices (4 inches)</option>
+                                    <option value="Ceiling Cornices up to 6 inches">Ceiling Cornices (6 inches)</option>
+                                    <option value="Ceiling Groove Making">Ceiling Groove Making</option>
+                                    <option value="Skirting & Wall Groove">Skirting & Wall Groove</option>
+                                    <option value="Light Gala Cutting">Light Gala Cutting</option>
+                                    <option value="AC Grill Cutting">AC Grill Cutting</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="calcQuantity" class="form-label">Quantity (in SFT/RFT/Nos based on service):</label>
+                                <input type="number" id="calcQuantity" class="form-control" placeholder="Enter quantity" min="1" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="button" id="calculateCostBtn" class="btn-hero">
+                                    Calculate Estimate <span id="calculatorSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none;"></span>
+                                </button>
+                            </div>
+                            <div id="calculationResult" class="alert mt-3" style="display:none;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!---------------------------------------------- Services Section ---------------------------------------->
+        <section id="services">
+            <div class="container">
+                <h2 class="section-title">Our Core Services</h2>
+                <div class="grid-3">
+                  <article class="service-card fade">
+                    <div class="service-icon-wrapper">
+                        <span class="service-emoji" role="img" aria-label="Paint Palette">🎨</span>
+
+                    </div>
+                    <h3>P.O.P False Ceilings</h3>
+                    <p id="popServiceDesc">Customized cornices, crown moldings & designer ceilings with 10-year warranty.</p>
+                      <ul class="list-styled text-start mt-3">
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>False Ceiling Designs</li>
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Wall Moldings</li>
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Decorative Cornices</li>
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Custom Designs</li>
+                      </ul>
+                      <div class="service-action-buttons">
+                          <button class="service-action-btn" data-action="elaborate" data-service-name="P.O.P False Ceilings" data-service-desc="Customized cornices, crown moldings & designer ceilings with 10-year warranty." data-target-id="popElaboration" data-spinner-id="popSpinner" aria-controls="popElaboration">Elaborate ✨</button>
+                          <button class="service-action-btn" data-action="summarize" data-service-name="P.O.P False Ceilings" data-service-desc="Customized cornices, crown moldings & designer ceilings with 10-year warranty." data-target-id="popElaboration" data-spinner-id="popSpinner" aria-controls="popElaboration">Summarize 📝</button>
+                      </div>
+                      <div id="popElaboration" class="llm-service-detail" aria-live="polite" aria-atomic="true"></div>
+                      <div id="popSpinner" class="loading-spinner" role="status" aria-label="Generating details...">Generating details...</div>
+                  </article>
+                  <article class="service-card fade">
+                    <div class="service-icon-wrapper">
+                        <span class="service-emoji" role="img" aria-label="Office Building">🏢</span>
+                    </div>
+                    <h3>Gypsum Partitioning</h3>
+                    <p id="gypsumServiceDesc">Sound-proof, fire-rated gypsum boards for offices & homes in 48 hrs.</p>
+                      <ul class="list-styled text-start mt-3">
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Gypsum Board Partitions</li>
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Suspended Ceilings</li>
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Soundproofing Solutions</li>
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Fire-Resistant Installations</li>
+                      </ul>
+                      <div class="service-action-buttons">
+                          <button class="service-action-btn" data-action="elaborate" data-service-name="Gypsum Partitioning" data-service-desc="Sound-proof, fire-rated gypsum boards for offices & homes in 48 hrs." data-target-id="gypsumElaboration" data-spinner-id="gypsumSpinner" aria-controls="gypsumElaboration">Elaborate ✨</button>
+                          <button class="service-action-btn" data-action="summarize" data-service-name="Gypsum Partitioning" data-service-desc="Sound-proof, fire-rated gypsum boards for offices & homes in 48 hrs." data-target-id="gypsumElaboration" data-spinner-id="gypsumSpinner" aria-controls="gypsumElaboration">Summarize 📝</button>
+                      </div>
+                      <div id="gypsumElaboration" class="llm-service-detail" aria-live="polite" aria-atomic="true"></div>
+                      <div id="gypsumSpinner" class="loading-spinner" role="status" aria-label="Generating details...">Generating details...</div>
+                  </article>
+                  <article class="service-card fade">
+                    <div class="service-icon-wrapper">
+                        <span class="service-emoji" role="img" aria-label="Construction Crane">🏗️</span>
+                    </div>
+                    <h3>Turn-Key Construction</h3>
+                    <p id="constructionServiceDesc">From blueprint to hand-over – design, civil, MEP & interior under one roof.</p>
+                      <ul class="list-styled text-start mt-3">
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Project Planning</li>
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Quality Construction</li>
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Timely Delivery</li>
+                        <li><i class="fas fa-check text-success me-2" aria-hidden="true"></i>Post-Construction Support</li>
+                      </ul>
+                      <div class="service-action-buttons">
+                          <button class="service-action-btn" data-action="elaborate" data-service-name="Turn-Key Construction" data-service-desc="From blueprint to hand-over – design, civil, MEP & interior under one roof." data-target-id="constructionElaboration" data-spinner-id="constructionSpinner" aria-controls="constructionElaboration">Elaborate ✨</button>
+                          <button class="service-action-btn" data-action="summarize" data-service-name="Turn-Key Construction" data-service-desc="From blueprint to hand-over – design, civil, MEP & interior under one roof." data-target-id="constructionElaboration" data-spinner-id="constructionSpinner" aria-controls="constructionElaboration">Summarize 📝</button>
+                      </div>
+                      <div id="constructionElaboration" class="llm-service-detail" aria-live="polite" aria-atomic="true"></div>
+                      <div id="constructionSpinner" class="loading-spinner" role="status" aria-label="Generating details...">Generating details...</div>
+                  </article>
+                </div>
+            </div>
+        </section>
+
+
+       <!-- Pricing Section -->
+        <section id="pricing" class="section-bg pricing-bg">
+        <div class="container py-5">
+            <h2 class="section-title">Transparent Pricing Plans</h2>
+            <div class="pricing-plans">
+                <!-- Plan 1: Basic -->
+                <div class="pricing-card animate-fade-in">
+                    <div class="pricing-header">
+                        <h3>Basic Plan</h3>
+                        <p>Ideal for small renovations & quick touch-ups.</p>
+                    </div>
+                    <div class="price-value"><span>&#8377;</span>499<span class="price-duration">/sqft</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check-circle"></i> Standard POP/Gypsum Work</li>
+                        <li><i class="fas fa-check-circle"></i> Basic Design Consultation</li>
+                        <li><i class="fas fa-check-circle"></i> Quality Materials</li>
+                        <li><i class="fas fa-check-circle"></i> 1-Year Workmanship Warranty</li>
+                        <li><i class="fas fa-times-circle text-danger"></i> Advanced Designs</li>
+                        <li><i class="fas fa-times-circle text-danger"></i> Dedicated Project Manager</li>
+                    </ul>
+                    <button class="btn-pricing">Choose Basic</button>
+                </div>
+
+                <!-- Plan 2: Standard (Popular) -->
+                <div class="pricing-card popular animate-fade-in" style="--animation-delay: 0.1s;">
+                    <div class="pricing-header">
+                        <h3>Standard Plan</h3>
+                        <p>Most popular for residential projects & moderate designs.</p>
+                    </div>
+                    <div class="price-value"><span>&#8377;</span>799<span class="price-duration">/sqft</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check-circle"></i> Premium POP/Gypsum Work</li>
+                        <li><i class="fas fa-check-circle"></i> Detailed Design Consultation</li>
+                        <li><i class="fas fa-check-circle"></i> High-Quality Materials</li>
+                        <li><i class="fas fa-check-circle"></i> 3-Year Workmanship Warranty</li>
+                        <li><i class="fas fa-check-circle"></i> Custom Lighting Integration</li>
+                        <li><i class="fas fa-times-circle text-danger"></i> Dedicated Project Manager</li>
+                    </ul>
+                    <button class="btn-pricing">Choose Standard</button>
+                </div>
+
+                <!-- Plan 3: Premium -->
+                <div class="pricing-card animate-fade-in" style="--animation-delay: 0.2s;">
+                    <div class="pricing-header">
+                        <h3>Premium Plan</h3>
+                        <p>For large-scale & complex commercial/luxury projects.</p>
+                    </div>
+                    <div class="price-value"><span>&#8377;</span>1199<span class="price-duration">/sqft</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check-circle"></i> Elite POP/Gypsum Work</li>
+                        <li><i class="fas fa-check-circle"></i> Comprehensive Design Consultation</li>
+                        <li><i class="fas fa-check-circle"></i> Superior Grade Materials</li>
+                        <li><i class="fas fa-check-circle"></i> 5-Year Workmanship Warranty</li>
+                        <li><i class="fas fa-check-circle"></i> Smart Home & Lighting Automation</li>
+                        <li><i class="fas fa-check-circle"></i> Dedicated Project Manager</li>
+                    </ul>
+                    <button class="btn-pricing">Choose Premium</button>
+                </div>
+            </div>
+
+            <!-- Detailed Pricing Table Section -->
+            <div class="pricing-table-container animate-fade-in">
+                <h3 class="section-title" style="margin-bottom: 2rem;">Detailed Service Rates</h3>
+                <div class="pricing-controls">
+                    <input type="text" id="searchInput" placeholder="Search services..." aria-label="Search services">
+                    <button onclick="sortTable('name')" aria-label="Sort by service name">
+                        <i class="fas fa-sort-alpha-down me-1"></i>Sort A-Z
+                    </button>
+                    <button onclick="sortTable('rate')" aria-label="Sort by rate">
+                        <i class="fas fa-sort-numeric-down me-1"></i>Sort by Rate
+                    </button>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table id="pricingTable" class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Service</th>
+                                <th>Unit</th>
+                                <th>Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pricingTableBody">
+                            <!-- Table content will be generated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!---------------------------------------------- Portfolio Section -------------------------------------->
+        <section id="portfolio" class="section section-bg portfolio-bg">
+            <div class="container">
+                <h2 class="section-title">Our Recent Projects</h2>
+                <div class="grid-3">
+                    <div class="card fade" style="padding: 0; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500" alt="Modern P.O.P Ceiling" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 1.5rem;">
+                            <h4>Modern P.O.P Ceiling</h4>
+                            <p>Residential Project - Contemporary design with integrated lighting</p>
+                        </div>
+                    </div>
+                    <div class="card fade" style="padding: 0; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500" alt="Gypsum Wall Design" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 1.5rem;">
+                            <h4>Gypsum Wall Installation</h4>
+                            <p>Commercial Office - Sound-proof partitions with premium finish</p>
+                        </div>
+                    </div>
+                    <div class="card fade" style="padding: 0; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=500" alt="Decorative Molding" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 1.5rem;">
+                            <h4>Decorative Moldings</h4>
+                            <p>Luxury Home - Intricate crown moldings and architectural details</p>
+                        </div>
+                    </div>
+                    <div class="card fade" style="padding: 0; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500" alt="False Ceiling Design" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 1.5rem;">
+                            <h4>False Ceiling Design</h4>
+                            <p>Restaurant Project - Multi-level ceiling with ambient lighting</p>
+                        </div>
+                    </div>
+                    <div class="card fade" style="padding: 0; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=500" alt="Gypsum Partition" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 1.5rem;">
+                            <h4>Gypsum Partitions</h4>
+                            <p>Office Complex - Fire-rated partitions with glass inserts</p>
+                        </div>
+                    </div>
+                    <div class="card fade" style="padding: 0; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500" alt="Custom P.O.P Work" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 1.5rem;">
+                            <h4>Custom P.O.P Design</h4>
+                            <p>Residential Villa - Bespoke ceiling design with artistic elements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!--------------------------------------------- About Section ------------------------------------------>
+        <section id="about" class="section section-bg about-bg">
+            <div class="container">
+                <h2 class="section-title">About Malik Art Decor</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; align-items: center;">
+                    <div class="fade">
+                        <p class="lead">With over a decade of experience in the industry, Malik Art Decor has established itself as a leading provider of P.O.P. and Gypsum works in the region.</p>
+                        <p>Our team of skilled craftsmen and designers work together to transform ordinary spaces into extraordinary environments. We pride ourselves on attention to detail, quality materials, and timely project completion.</p>
+                        <div class="mt-4">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--clr-success), var(--clr-accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                    <i class="fas fa-medal" style="color: white;"></i>
+                                </div>
+                                <div>
+                                    <h5 style="margin: 0;">Quality Assurance</h5>
+                                    <p style="margin: 0; opacity: 0.8;">Premium materials and proven techniques</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--clr-warning), var(--clr-accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                    <i class="fas fa-clock" style="color: white;"></i>
+                                </div>
+                                <div>
+                                    <h5 style="margin: 0;">Timely Delivery</h5>
+                                    <p style="margin: 0; opacity: 0.8;">Efficient project management</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;" class="fade">
+                        <div class="card text-center">
+                            <div style="font-size: 3rem; font-weight: 800; color: var(--clr-primary); margin-bottom: 0.5rem;">500+</div>
+                            <p style="margin: 0;">Projects Completed</p>
+                        </div>
+                        <div class="card text-center">
+                            <div style="font-size: 3rem; font-weight: 800; color: var(--clr-primary); margin-bottom: 0.5rem;">10+</div>
+                            <p style="margin: 0;">Years Experience</p>
+                        </div>
+                        <div class="card text-center">
+                            <div style="font-size: 3rem; font-weight: 800; color: var(--clr-primary); margin-bottom: 0.5rem;">100%</div>
+                            <p style="margin: 0;">Client Satisfaction</p>
+                        </div>
+                        <div class="card text-center">
+                            <div style="font-size: 3rem; font-weight: 800; color: var(--clr-primary); margin-bottom: 0.5rem;">24/7</div>
+                            <p style="margin: 0;">Support Available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!---------------------------------------------- Contact Section ------------------------------------->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-form-container">
+                    <div class="contact-form">
+                        <form id="contactForm" aria-labelledby="contact-form-heading">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="contactName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="contactName" name="name" required aria-required="true">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="contactPhone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="contactPhone" name="phone" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contactEmail" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="contactEmail" name="email" required aria-required="true">
+                            </div>
+                            <div class="mb-3">
+                                <label for="contactService" class="form-label">Service Required</label>
+                                <select class="form-control" id="contactService" name="service" required aria-required="true">
+                                    <option value="">Select Service</option>
+                                    <option value="P.O.P. Works">P.O.P. Works</option>
+                                    <option value="Gypsum Works">Gypsum Works</option>
+                                    <option value="Construction Contract">Construction Contract</option>
+                                    <option value="Consultation">Consultation</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contactMessage" class="form-label">Project Details</label>
+                                <textarea class="form-control" id="contactMessage" name="message" rows="5" placeholder="Tell us about your project requirements..." aria-label="Project Details"></textarea>
+                            </div>
+                            <div class="text-center d-grid gap-2">
+                            <button type="submit" class="btn-hero">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                                <button type="button" id="getIdeasBtn" class="btn btn-mad btn-lg">
+                                    <i class="fas fa-lightbulb me-2" aria-hidden="true"></i>Get Project Ideas ✨
+                                </button>
+                            </div>
+                        </form>
+                        <div id="llmResponse" class="llm-response-container" aria-live="polite" aria-atomic="true">
+                            <h5>✨ Project Enhancement Ideas:</h5>
+                            <div id="llmResponseContent"></div>
+                            <div id="llmLoadingSpinner" class="loading-spinner" role="status" aria-label="Generating ideas...">Generating ideas...</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card animate-fade-in" style="--animation-delay: 0.2s;">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-info-list">
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Plot No. 43,44, Bagrana, Jaipur, Rajasthan. </span></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+1234567890">+91 (976) 962-6310</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@madassociates.com">malikartdecor@gmail.com</a></li>
+                        <li><i class="fas fa-clock"></i> <span>Mon - Sat: 9:00 AM - 6:00 PM</span></li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15129.588145417834!2d73.82115165!3d18.5701358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf9e00000001%3A0x6a0f4a9b5c3c0d!2sPune!5e0!3m2!1sen!2sin!4v1678888888888!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!---------------------------------------------- Footer --------------------------------------------->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="d-flex align-items-center mb-3">
+                        <div style="background: linear-gradient(135deg, var(--clr-accent), #ffffff); width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                            <i class="fas fa-home" style="color: var(--clr-primary); font-size: 1.5rem;" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: white; margin: 0;">Malik Art Decor</h4>
+                            <small style="color: var(--clr-accent);">P.O.P. & GYPSUM SPECIALISTS</small>
+                        </div>
+                    </div>
+                    <p>Transforming spaces with expert craftsmanship and innovative design solutions. Your trusted partner for all P.O.P. and Gypsum works.</p>
+                    <div class="social-links" aria-label="Social Media Links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="#services">P.O.P. Works</a></li>
+                        <li><a href="#services">Gypsum Works</a></li>
+                        <li><a href="#services">Construction</a></li>
+                        <li><a href="#services">Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect With Us</h5>
+                    <p><i class="fas fa-envelope me-2" aria-hidden="true"></i>malikartdecor@gmail.com</p>
+                    <p><i class="fas fa-phone me-2" aria-hidden="true"></i>+91 97696 26310</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Malik Art Decor. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>

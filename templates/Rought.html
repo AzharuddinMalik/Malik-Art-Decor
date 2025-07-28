@@ -2199,8 +2199,71 @@
                 counters.forEach(counter => observer.observe(counter));
             }
 
+            // // Gemini API Integration - Get Project Ideas (Contact Form)
+            // async function getProjectIdeas() {
+            //     const projectDetails = document.getElementById('contactMessage').value;
+            //     const serviceType = document.getElementById('contactService').value;
+            //     const llmResponseDiv = document.getElementById('llmResponse');
+            //     const llmResponseContent = document.getElementById('llmResponseContent');
+            //     const llmLoadingSpinner = document.getElementById('llmLoadingSpinner');
+            //
+            //     if (!projectDetails.trim() || !serviceType.trim()) {
+            //         showMessageBox('Please provide project details and select a service to get ideas. ', 'info'); // Please provide project details and select a service to get ideas.  कृपया विचार प्राप्त करने के लिए प्रोजेक्ट विवरण प्रदान करें और एक सेवा चुनें
+            //         return;
+            //     }
+            //
+            //     llmResponseContent.innerHTML = ''; // Clear previous ideas
+            //     llmResponseDiv.style.display = 'block'; // Show the container
+            //     llmLoadingSpinner.style.display = 'block'; // Show spinner
+            //
+            //     const prompt = `The user is planning a project for '${serviceType}' with the following details: '${projectDetails}'. Based on this, provide creative and practical ideas, design suggestions, or potential enhancements for their project. Focus on innovative solutions and aesthetic improvements. Keep the response concise and actionable, formatted as a bulleted list.`;
+            //
+            //     let chatHistory = [];
+            //     chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            //
+            //     const payload = { contents: chatHistory };
+            //     const apiKey = ""; // Canvas will automatically provide the API key
+            //     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            //
+            //     try {
+            //         const response = await fetch(apiUrl, {
+            //             method: 'POST',
+            //             headers: { 'Content-Type': 'application/json' },
+            //             body: JSON.stringify(payload)
+            //         });
+            //
+            //         const result = await response.json();
+            //
+            //         if (result.candidates && result.candidates.length > 0 &&
+            //             result.candidates[0].content && result.candidates[0].content.parts &&
+            //             result.candidates[0].content.parts.length > 0) {
+            //             const text = result.candidates[0].content.parts[0].text;
+            //             // Convert markdown list to HTML list
+            //             const htmlList = text.split('\n').map(line => {
+            //                 if (line.startsWith('* ') || line.startsWith('- ')) {
+            //                     return `<li>${line.substring(2).trim()}</li>`;
+            //                 }
+            //                 return line; // Return as is if not a list item
+            //             }).join('');
+            //             llmResponseContent.innerHTML = `<ul>${htmlList}</ul>`;
+            //         } else {
+            //             llmResponseContent.innerHTML = '<p>Could not generate ideas. Please try again.</p>'; // Could not generate ideas. Please try again.  िचार उत्पन्न नहीं कर सका। कृपया पुनः प्रयास करें।
+            //             console.error('Gemini API response structure unexpected:', result);
+            //         }
+            //     } catch (error) {
+            //         llmResponseContent.innerHTML = '<p>Error connecting to the idea generator. Please try again later.</p>'; // Error connecting to the idea generator. Please try again later.
+            //         console.error('Error calling Gemini API:', error);
+            //     } finally {
+            //         llmLoadingSpinner.style.display = 'none'; // Hide spinner
+            //     }
+            // }
+
+            // Inside your <script> tag in MAD.html or your external JS file
+
+            // ... (previous functions and code) ...
+
             // Gemini API Integration - Get Project Ideas (Contact Form)
-            async function getProjectIdeas() {
+            const getProjectIdeas = async () => {
                 const projectDetails = document.getElementById('contactMessage').value;
                 const serviceType = document.getElementById('contactService').value;
                 const llmResponseDiv = document.getElementById('llmResponse');
@@ -2208,55 +2271,59 @@
                 const llmLoadingSpinner = document.getElementById('llmLoadingSpinner');
 
                 if (!projectDetails.trim() || !serviceType.trim()) {
-                    showMessageBox('Please provide project details and select a service to get ideas. ', 'info'); // Please provide project details and select a service to get ideas.  कृपया विचार प्राप्त करने के लिए प्रोजेक्ट विवरण प्रदान करें और एक सेवा चुनें
+                    showMessageBox('Please provide project details and select a service to get ideas.', 'info');
                     return;
                 }
 
-                llmResponseContent.innerHTML = ''; // Clear previous ideas
-                llmResponseDiv.style.display = 'block'; // Show the container
-                llmLoadingSpinner.style.display = 'block'; // Show spinner
+                llmResponseContent.innerHTML = '';
+                llmResponseDiv.style.display = 'block';
+                llmLoadingSpinner.style.display = 'block';
 
-                const prompt = `The user is planning a project for '${serviceType}' with the following details: '${projectDetails}'. Based on this, provide creative and practical ideas, design suggestions, or potential enhancements for their project. Focus on innovative solutions and aesthetic improvements. Keep the response concise and actionable, formatted as a bulleted list.`;
-
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // Canvas will automatically provide the API key
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                // *** IMPORTANT CHANGE HERE ***
+                // Point to your local Flask backend during development
+                // When deploying, this URL will change to your deployed backend URL
+                const backendUrl = 'http://localhost:5000/generate-ideas';
 
                 try {
-                    const response = await fetch(apiUrl, {
+                    const response = await fetch(backendUrl, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
+                        body: JSON.stringify({
+                            projectDetails: projectDetails,
+                            serviceType: serviceType
+                        })
                     });
 
                     const result = await response.json();
 
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const text = result.candidates[0].content.parts[0].text;
-                        // Convert markdown list to HTML list
-                        const htmlList = text.split('\n').map(line => {
-                            if (line.startsWith('* ') || line.startsWith('- ')) {
-                                return `<li>${line.substring(2).trim()}</li>`;
-                            }
-                            return line; // Return as is if not a list item
-                        }).join('');
-                        llmResponseContent.innerHTML = `<ul>${htmlList}</ul>`;
+                    if (response.ok) { // Check if the backend request was successful (status 2xx)
+                        if (result.ideas) {
+                            const text = result.ideas;
+                            // Convert markdown list to HTML list
+                            const htmlList = text.split('\n').map(line => {
+                                if (line.startsWith('* ') || line.startsWith('- ')) {
+                                    return `<li>${line.substring(2).trim()}</li>`;
+                                }
+                                return line; // Return as is if not a list item
+                            }).join('');
+                            llmResponseContent.innerHTML = `<ul>${htmlList}</ul>`;
+                        } else {
+                            llmResponseContent.innerHTML = '<p>Could not generate ideas. Backend response missing "ideas".</p>';
+                            console.error('Backend response structure unexpected:', result);
+                        }
                     } else {
-                        llmResponseContent.innerHTML = '<p>Could not generate ideas. Please try again.</p>'; // Could not generate ideas. Please try again.  िचार उत्पन्न नहीं कर सका। कृपया पुनः प्रयास करें।
-                        console.error('Gemini API response structure unexpected:', result);
+                        llmResponseContent.innerHTML = `<p>Error from backend: ${result.error || 'Unknown error'}.</p>`;
+                        console.error('Backend error:', result);
                     }
                 } catch (error) {
-                    llmResponseContent.innerHTML = '<p>Error connecting to the idea generator. Please try again later.</p>'; // Error connecting to the idea generator. Please try again later.
-                    console.error('Error calling Gemini API:', error);
+                    llmResponseContent.innerHTML = '<p>Error connecting to the backend server. Please ensure it is running.</p>';
+                    console.error('Network error during backend call:', error);
                 } finally {
-                    llmLoadingSpinner.style.display = 'none'; // Hide spinner
+                    llmLoadingSpinner.style.display = 'none';
                 }
-            }
+            };
+
+            // ... (rest of your JavaScript code) ...
 
             // Gemini API Integration - Service Elaborator/Summarizer (Services Section)
             async function handleServiceAction(actionType, serviceName, currentDescription, targetElementId, spinnerId) {
