@@ -1,3 +1,4 @@
 flask
-flask-cores
-google
+flask-cors
+google-generativeai
+gunicorn
