@@ -9,36 +9,36 @@ print(f"Base directory: {basedir}")  # Debug print
 app = Flask(__name__, template_folder=os.path.join(basedir, 'templates'))
 CORS(app)
 
+# IMPORTANT: Ensure GEMINI_API_KEY is set as an environment variable
+# For local development, you might set it in your shell:
+# export GEMINI_API_KEY='YOUR_GEMINI_API_KEY_HERE'
+# Or in PyCharm Run Configuration.
 GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
 
 if not GEMINI_API_KEY:
     print("Error: GEMINI_API_KEY environment variable not set.")
     print("Please set it in your PyCharm Run Configuration or system environment.")
+    # In a production environment, you might want to raise an error or exit.
 
 genai.configure(api_key=GEMINI_API_KEY)
+# Using gemini-2.0-flash as per your frontend's request
 model = genai.GenerativeModel('gemini-2.0-flash')
 
-@app.route('/generate-ideas', methods=['POST'])
-def generate_ideas():
-    if not GEMINI_API_KEY:
-        return jsonify({"error": "API key not configured on server."}), 500
-
-    data = request.json
-    project_details = data.get('projectDetails')
-    service_type = data.get('serviceType')
-
-    if not project_details or not service_type:
-        return jsonify({"error": "Missing project details or service type."}), 400
-
-    prompt = f"The user is planning a project for '{service_type}' with the following details: '{project_details}'. Based on this, provide creative and practical ideas, design suggestions, or potential enhancements for their project. Focus on innovative solutions and aesthetic improvements. Keep the response concise and actionable, formatted as a bulleted list."
-
+# app.py
+@app.route('/generate-text', methods=['POST'])
+def generate_text():
     try:
-        response = model.generate_content(prompt)
-        generated_text = response.candidates[0].content.parts[0].text
-        return jsonify({"ideas": generated_text})
+        data = request.json
+        if not data or 'prompt' not in data:
+            return jsonify({"error": "Missing prompt"}), 400
+
+        response = model.generate_content(data['prompt'])
+
+        if response.candidates and response.candidates[0].content.parts:
+            generated_text = response.candidates[0].content.parts[0].text
+            return jsonify({"generatedText": generated_text})
     except Exception as e:
-        print(f"Error calling Gemini API from backend: {e}")
-        return jsonify({"error": "Failed to generate ideas from AI."}), 500
+        return jsonify({"error": str(e)}), 500
 
 PAGE_TITLE = "Welcome to My Website"
 
@@ -48,4 +48,6 @@ def render_home_page():
     return render_template('MAD.html', title=PAGE_TITLE)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+    # When running locally, Flask defaults to 127.0.0.1:5000
+    # For deployment, the PORT environment variable is often used.
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000))) # Changed default port to 5000

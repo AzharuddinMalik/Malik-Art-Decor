@@ -8,7 +8,7 @@
                 if (theme === 'dark') {
                     themeIcon.innerHTML = '<path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>';
                 } else {
-                    themeIcon.innerHTML = '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 011.06-1.06l1.591 1.591a.75.75 0 11-1.06 1.06l-1.591-1.591zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75z"/>';
+                    themeIcon.innerHTML = '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
                 }
             }
         }
@@ -33,30 +33,35 @@
 
             // MOBILE MENU TOGGLE FUNCTIONALITY
             const initializeMobileMenu = () => {
-                const navbarToggler = document.querySelector('.navbar-toggler');
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarToggler && navbarCollapse) {
-                    navbarToggler.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        navbarCollapse.classList.toggle('show');
-                        const isExpanded = navbarCollapse.classList.contains('show');
-                        navbarToggler.setAttribute('aria-expanded', isExpanded);
+                const mobileToggle = document.querySelector('.mobile-toggle');
+                const mobileMenu = document.querySelector('.mobile-menu');
+
+                if (mobileToggle && mobileMenu) {
+                    mobileToggle.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Prevent document click from immediately closing
+                        this.classList.toggle('active');
+                        mobileMenu.classList.toggle('active');
+                        const isExpanded = this.classList.contains('active');
+                        this.setAttribute('aria-expanded', isExpanded);
                         document.body.style.overflow = isExpanded ? 'hidden' : ''; // Prevent scrolling when menu is open
                     });
-                    document.addEventListener('click', (e) => {
-                        if (!navbarToggler.contains(e.target) && !navbarCollapse.contains(e.target)) {
-                            if (navbarCollapse.classList.contains('show')) {
-                                navbarCollapse.classList.remove('show');
-                                navbarToggler.setAttribute('aria-expanded', 'false');
-                                document.body.style.overflow = '';
-                            }
+
+                    // Close menu on outside click
+                    document.addEventListener('click', function(e) {
+                        if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+                            mobileToggle.classList.remove('active');
+                            mobileMenu.classList.remove('active');
+                            mobileToggle.setAttribute('aria-expanded', 'false');
+                            document.body.style.overflow = '';
                         }
                     });
-                    window.addEventListener('resize', () => {
-                        if (window.innerWidth > 768) { // Adjusted breakpoint for consistency with CSS
-                            navbarCollapse.classList.remove('show');
-                            navbarToggler.setAttribute('aria-expanded', 'false');
+
+                    // Close menu on resize if screen becomes larger
+                    window.addEventListener('resize', function() {
+                        if (window.innerWidth > 991) { // Breakpoint from navigation system.html
+                            mobileToggle.classList.remove('active');
+                            mobileMenu.classList.remove('active');
+                            mobileToggle.setAttribute('aria-expanded', 'false');
                             document.body.style.overflow = '';
                         }
                     });
@@ -115,7 +120,7 @@
                 });
             };
 
-            // CALCULATOR LOGIC
+            // CALCULATOR LOGIC (Existing, no changes needed from navigation system)
             const initializeCalculator = () => {
                 const rates = { pop: 28, gypsum: 70, full: 1500 };
                 const serviceType = document.getElementById('serviceType');
@@ -170,12 +175,14 @@
                                     behavior: 'smooth'
                                 });
                             }
-                            const navbarCollapse = document.querySelector('.navbar-collapse');
-                            const navbarToggler = document.querySelector('.navbar-toggler');
-                            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-                                navbarCollapse.classList.remove('show');
-                                if (navbarToggler) {
-                                    navbarToggler.setAttribute('aria-expanded', 'false');
+                            // Close mobile menu after clicking a link
+                            const mobileMenu = document.querySelector('.mobile-menu');
+                            const mobileToggle = document.querySelector('.mobile-toggle');
+                            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                                mobileMenu.classList.remove('active');
+                                if (mobileToggle) {
+                                    mobileToggle.classList.remove('active');
+                                    mobileToggle.setAttribute('aria-expanded', 'false');
                                 }
                                 document.body.style.overflow = ''; // Re-enable scrolling
                             }
@@ -359,6 +366,23 @@
                 counters.forEach(counter => observer.observe(counter));
             };
 
+            // New function to call your backend
+            async function callGeminiViaBackend(prompt) {
+                try {
+                    const response = await fetch('/generate-text', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt })
+                    });
+
+                    const data = await response.json();
+                    return data.generatedText;
+                } catch (error) {
+                    console.error('Backend API error:', error);
+                    throw error;
+                }
+            }
+
             // Gemini API Integration - Get Project Ideas (Contact Form)
             const getProjectIdeas = async () => {
                 const projectDetails = document.getElementById('contactMessage').value;
@@ -382,22 +406,15 @@
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
 
                 const payload = { contents: chatHistory };
-                const apiKey = "AIzaSyADnMa7DnYY84wSZxbpXOSU7G1g9GVCwRY"; // Canvas will automatically provide the API key
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                // const apiKey = ""; // Canvas will automatically provide the API key
+                // const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
+                 try {
+                    // Replace Gemini API call with:
+                    const text = await callGeminiViaBackend(prompt);
 
-                    const result = await response.json();
-
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const text = result.candidates[0].content.parts[0].text;
+                    // Process text as before
+                    if (text) {
                         const htmlList = text.split('\n').map(line => {
                             if (line.startsWith('* ') || line.startsWith('- ')) {
                                 return `<li>${line.substring(2).trim()}</li>`;
@@ -405,9 +422,6 @@
                             return line;
                         }).join('');
                         llmResponseContent.innerHTML = `<ul>${htmlList}</ul>`;
-                    } else {
-                        llmResponseContent.innerHTML = '<p>Could not generate ideas. Please try again.</p>';
-                        console.error('Gemini API response structure unexpected:', result);
                     }
                 } catch (error) {
                     llmResponseContent.innerHTML = '<p>Error connecting to the idea generator. Please try again later.</p>';
@@ -419,68 +433,48 @@
 
             // Gemini API Integration - Service Elaborator/Summarizer (Services Section)
             const handleServiceAction = async (actionType, serviceName, currentDescription, targetElementId, spinnerId) => {
-                const targetElement = document.getElementById(targetElementId);
-                const spinner = document.getElementById(spinnerId);
+    const targetElement = document.getElementById(targetElementId);
+    const spinner = document.getElementById(spinnerId);
 
-                if (!targetElement || !spinner) {
-                    console.error('Target element or spinner not found for service elaboration/summary.');
-                    return;
-                }
+    if (!targetElement || !spinner) {
+        console.error('Target element or spinner not found');
+        return;
+    }
 
-                // Toggle visibility: if already visible, hide it and clear content
-                if (targetElement.style.display === 'block') {
-                    targetElement.style.display = 'none';
-                    targetElement.innerHTML = '';
-                    return;
-                }
+    // Toggle visibility
+    if (targetElement.style.display === 'block') {
+        targetElement.style.display = 'none';
+        targetElement.innerHTML = '';
+        return;
+    }
 
-                targetElement.innerHTML = '';
-                targetElement.style.display = 'block';
-                spinner.style.display = 'block';
+    targetElement.innerHTML = '';
+    targetElement.style.display = 'block';
+    spinner.style.display = 'block';
 
-                let prompt = '';
-                if (actionType === 'elaborate') {
-                    prompt = `Elaborate on the following service: '${serviceName}'. The current brief description is: '${currentDescription}'. Provide a more detailed and engaging description, highlighting its benefits, unique selling points, and what a client can expect. Keep it concise, around 2-3 paragraphs.`;
-                } else if (actionType === 'summarize') {
-                    prompt = `Summarize this service information more concisely. The current brief description is: '${currentDescription}'. Cover all main points in about 50-60 words, so visitors can quickly understand.`;
-                }
+    let prompt = '';
+    if (actionType === 'elaborate') {
+        prompt = `Elaborate on: '${serviceName}'. Current description: '${currentDescription}'. Provide detailed description with benefits and USPs in 2-3 paragraphs.`;
+    } else if (actionType === 'summarize') {
+        prompt = `Summarize: '${currentDescription}' in 50-60 words.`;
+    }
 
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+    try {
+        // Call your Flask backend instead of Gemini directly
+        const text = await callGeminiViaBackend(prompt);
 
-                const payload = { contents: chatHistory };
-                const apiKey = "AIzaSyADnMa7DnYY84wSZxbpXOSU7G1g9GVCwRY"; // Canvas will automatically provide the API key
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    const result = await response.json();
-
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const text = result.candidates[0].content.parts[0].text;
-                        if (actionType === 'elaborate') {
-                            targetElement.innerHTML = text.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('');
-                        } else {
-                            targetElement.textContent = text.trim();
-                        }
-                    } else {
-                        targetElement.innerHTML = '<p>Could not generate information. Please try again.</p>';
-                        console.error('Gemini API response structure unexpected for service action:', result);
-                    }
-                } catch (error) {
-                    targetElement.innerHTML = '<p>Error connecting to the information generator. Please try again later.</p>';
-                    console.error('Error calling Gemini API for service action:', error);
-                } finally {
-                    spinner.style.display = 'none';
-                }
-            };
+        if (actionType === 'elaborate') {
+            targetElement.innerHTML = text.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('');
+        } else {
+            targetElement.textContent = text.trim();
+        }
+    } catch (error) {
+        targetElement.innerHTML = '<p>Error connecting to service. Please try again.</p>';
+        console.error('Error:', error);
+    } finally {
+        spinner.style.display = 'none';
+    }
+};
             window.handleServiceAction = handleServiceAction; // Make globally accessible
 
             // Pricing Table Functionality
@@ -561,13 +555,21 @@
 
             // Gemini API for Maintenance Tips
             const generateMaintenanceTips = async () => {
-                const maintenanceService = document.getElementById('maintenanceService').value;
-                const maintenanceConcerns = document.getElementById('maintenanceConcerns').value.trim();
+                // This function depends on elements not present in the provided HTML.
+                // If you add a "Maintenance Tips" section, ensure these elements exist.
+                const maintenanceService = document.getElementById('maintenanceService');
+                const maintenanceConcerns = document.getElementById('maintenanceConcerns');
                 const maintenanceResponseDiv = document.getElementById('maintenanceResponse');
                 const maintenanceSpinner = document.getElementById('maintenanceSpinner');
                 const getMaintenanceTipsBtn = document.getElementById('getMaintenanceTipsBtn');
 
-                if (!maintenanceService) {
+                if (!maintenanceService || !maintenanceConcerns || !maintenanceResponseDiv || !maintenanceSpinner || !getMaintenanceTipsBtn) {
+                    console.warn('Maintenance tips elements not found. Skipping initialization.');
+                    return;
+                }
+
+
+                if (!maintenanceService.value) {
                     showMessageBox('Please select a type of POP/Gypsum work.', 'error');
                     return;
                 }
@@ -577,9 +579,9 @@
                 if (getMaintenanceTipsBtn) getMaintenanceTipsBtn.disabled = true;
                 maintenanceResponseDiv.classList.remove('alert-success', 'alert-info', 'alert-danger');
 
-                let prompt = `Provide detailed maintenance tips for a ${maintenanceService} installation.`;
-                if (maintenanceConcerns) {
-                    prompt += ` The user is specifically concerned about: ${maintenanceConcerns}. Address these concerns in the tips.`;
+                let prompt = `Provide detailed maintenance tips for a ${maintenanceService.value} installation.`;
+                if (maintenanceConcerns.value.trim()) {
+                    prompt += ` The user is specifically concerned about: ${maintenanceConcerns.value.trim()}. Address these concerns in the tips.`;
                 }
                 prompt += ` Ensure the tips are practical, easy to follow, and cover common issues like cleaning, moisture, and minor repairs. Format as a bulleted list.`;
 
@@ -587,8 +589,8 @@
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    // const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                    // const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
                         method: 'POST',
@@ -676,7 +678,7 @@
             try {
                 initializeMobileMenu();
                 initializeScrollEffect();
-                initializeCalculator();
+                initializeCalculator(); // This is the old calculator logic, might be redundant with initCostCalculator
                 initializeSmoothScroll();
                 initializeFadeOnScroll();
                 initializeLazyLoad(); // New: Lazy load images
@@ -686,7 +688,9 @@
                 initializeTypedText();
                 initPricingTable(); // New: Initialize interactive pricing table
                 initCostCalculator();
-                generateMaintenanceTips();
+                // The generateMaintenanceTips function depends on elements not present in the provided HTML.
+                // If you add a "Maintenance Tips" section, uncomment the line below.
+                // generateMaintenanceTips();
 
                 const getIdeasBtn = document.getElementById('getIdeasBtn');
                 if (getIdeasBtn) {
